@@ -56,5 +56,15 @@ export const providers: ProviderProps[] = [
     avatar: 'https://qph.cf2.poecdn.net/main-thumb-pb-4981273-200-phhqenmywlkiybehuaqvsxpfekviajex.jpeg',
     createdAt: '2024-12-27',
     updatedAt: '2024-12-27'
+  },
+  {     
+    id: 4,
+    name: 'veepseek2', 
+    title: 'veepSeek2',
+    desc: 'VeepSeek2',
+    models: ['deepseek-r1'],
+    avatar: 'https://qph.cf2.poecdn.net/main-thumb-pb-4981273-200-phhqenmywlkiybehuaqvsxpfekviajex.jpeg',
+    createdAt: '2024-12-27',
+    updatedAt: '2025-11-23'
   }
 ]

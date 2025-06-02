@@ -171,6 +171,10 @@ const getProviderConfig = (providerName: string): ProviderConfigItem[] => {
   if (!currentConfig.providerConfigs[providerName]) {
     currentConfig.providerConfigs[providerName] = {}
   }
+  console.log('>>>>>>>>>', configs.map(config => ({
+    ...config,
+    value: currentConfig.providerConfigs[providerName][config.key] || config.value
+  })))
   return configs.map(config => ({
     ...config,
     value: currentConfig.providerConfigs[providerName][config.key] || config.value

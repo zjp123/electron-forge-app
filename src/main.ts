@@ -1,6 +1,9 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, net, protocol } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
+import url from 'url'
+import { createMenu } from './menu';
+import { setupIPC } from './ipc';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -17,6 +20,20 @@ const createWindow = () => {
     },
   });
 
+  // Create application menu
+  createMenu(mainWindow)
+
+  // Setup IPC handlers
+  setupIPC(mainWindow)
+
+  protocol.handle('safe-file', async (request) => {
+    console.log(request.url)
+    const filePath = decodeURIComponent(request.url.slice('safe-file://'.length))
+    console.log(filePath)
+    const newFilePath = url.pathToFileURL(filePath).toString()
+    console.log(newFilePath)
+    return net.fetch(newFilePath)
+  })
   // and load the index.html of the app.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
