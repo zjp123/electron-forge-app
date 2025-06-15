@@ -19,6 +19,20 @@ const config: ForgeConfig = {
     // new MakerRpm({}), 
     // new MakerDeb({})
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'zjp123',
+          name: 'electron-forge-app'
+        },
+        prerelease: false,
+        draft: true,
+        authToken: process.env.GITHUB_TOKEN
+      }
+    }
+  ],
   plugins: [
     new VitePlugin({
       // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
